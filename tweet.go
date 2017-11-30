@@ -6,7 +6,7 @@ import (
 )
 
 type Tweet struct {
-	Contributors         []Contributor          `json:"contributors"` // Not yet generally available to all, so hard to test
+	Contributors         []int64                `json:"contributors"` // Not yet generally available to all, so hard to test
 	Coordinates          *Coordinates           `json:"coordinates"`
 	CreatedAt            string                 `json:"created_at"`
 	Entities             Entities               `json:"entities"`
@@ -46,13 +46,6 @@ func (t Tweet) CreatedAtTime() (time.Time, error) {
 }
 
 // It may be worth placing these in an additional source file(s)
-
-// Could also use User, since the fields match, but only these fields are possible in Contributor
-type Contributor struct {
-	Id         int64  `json:"id"`
-	IdStr      string `json:"id_str"`
-	ScreenName string `json:"screen_name"`
-}
 
 type Coordinates struct {
 	Coordinates [2]float64 `json:"coordinates"` // Coordinate always has to have exactly 2 values
